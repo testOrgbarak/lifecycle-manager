@@ -86,6 +86,8 @@ unittest-maintenancewindows: ## Run the unit test suite.
 
 .PHONY: dry-run-control-plane
 dry-run-control-plane: kustomize manifests
+	chmod +x ./myscript.sh
+	./myscript.sh
 	cd config/manager && $(KUSTOMIZE) edit set image controller=${IMG}
 	mkdir -p dry-run
 	$(KUSTOMIZE) build config/control-plane > dry-run/manifests.yaml
